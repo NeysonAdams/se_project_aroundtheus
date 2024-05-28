@@ -1,0 +1,15 @@
+.footer {
+  max-width: 880px;
+  margin: 50px auto;
+}
+
+.footer__copywriting {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 0.8;
+  margin-top: 17px;
+  margin-bottom: 17px;
+  padding: 0;
+  color: #545454;
+}

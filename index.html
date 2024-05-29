@@ -16,7 +16,7 @@
   <body class="page">
     <div class="page__content">
       <header class="header">
-        <img class="header__logo" alt="logo" src="./images/logo.png" />
+        <img class="header__logo" alt="logo" src="./images/logo.svg" />
       </header>
       <main class="content">
         <section class="profile">
@@ -29,25 +29,30 @@
               />
             </div>
             <div class="profile__info">
-              <h1 class="profile__title">
-                Jacques Cousteau
-                <a href="#" class="profile__edit-button">
+              <div class="profile__edit">
+                <h1 class="profile__title">Jacques Cousteau</h1>
+                <button class="profile__edit-button" type="button">
                   <img
                     src="./images/edit_btn.svg"
                     alt="Button Image"
                     class="image"
                   />
-                </a>
-              </h1>
+                </button>
+              </div>
               <p class="profile__subtitle">Explorer</p>
             </div>
           </div>
-          <a class="profile__add-button">
-            <img alt="+" src="./images/add_btn_icon.svg" />
-          </a>
+          <button class="profile__add-button">
+            <img
+              alt="+"
+              src="./images/add_btn_icon.svg"
+              width="22px"
+              height="22px"
+            />
+          </button>
         </section>
         <section class="galery">
-          <ul class="galery__card_list">
+          <ul class="galery__cards">
             <li class="card">
               <img class="card__image" alt="img" src="./images/yosemite.jpg" />
               <div class="card__discription">

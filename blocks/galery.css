@@ -6,10 +6,11 @@
   align-items: center;
 }
 
-.galery__card_list {
+.galery__cards {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, 282px);
+  grid-template-rows: repeat(auto-fit, 361px);
   grid-gap: 17px;
   list-style-type: none;
   margin: 0 auto;

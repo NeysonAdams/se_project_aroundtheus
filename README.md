@@ -1,25 +1,37 @@
-# Project 3: Around The U.S.
+# Around The U.S.
 
 ### Overview
 
-- Intro
-- Figma
-- Images
+- Description
+- Technologies that I used
+- Conclusion
 
-**Intro**
+**Description**
 
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.
+This project is a web gallery page titled "Around The U.S." The gallery showcases stunning images from various locations, including Yosemite Valley, Lake Louise, and Bald Mountains. The profile section highlights Jacques Cousteau, an explorer, with options to edit the profile and add new images to the gallery. The design incorporates modern CSS techniques such as Flexbox and Grid for a responsive and visually appealing layout. Additionally, the page includes interactive elements like buttons for liking photos and adding new content, enhancing user engagement.
 
-**Figma**
+You can also visit this page [via this link](https://neysonadams.github.io/se_project_aroundtheus/)
 
-- [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)
+**Technologies that I used**
 
-**Images**
+This website is built using a combination of modern web technologies to ensure a responsive and visually appealing design.
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster.
+1. **HTML5**: The structure of the website is created using semantic HTML5 elements, providing a clear and accessible layout.
 
-Good luck and have fun!
+2. **CSS3**:
 
-### Video
+- **Flexbox**: Used in the profile section to create a flexible and efficient layout. Flexbox allows for easy alignment and distribution of space among items in a container, making it ideal for responsive design.
+- **CSS Grid**: Implemented in the gallery section with the auto-fit property. CSS Grid provides a powerful layout system that allows images to be organized neatly in a grid, automatically adjusting to different screen sizes.
+- **Media Queries**: Employed to create an adaptive design that ensures the website looks great and functions well on various devices and screen sizes. Media queries allow for specific CSS rules to be applied based on the characteristics of the device, such as its width.
 
-You can see my video [here](https://ooo.mmhmm.app/watch/z_Fvy0awOEbh6nf7ggMM9w)
+3. **Responsive Design**: The website is fully responsive, ensuring a seamless user experience across different devices, from desktops to smartphones. This is achieved through the use of Flexbox, CSS Grid, and media queries.
+
+4. **SVG and Images**: Used for icons and high-quality gallery images.
+
+This combination of technologies ensures that the website is both functional and visually appealing, providing a great user experience on all devices.
+
+**Conclusion**
+
+And finally, I would like to share a [short video](https://ooo.mmhmm.app/watch/z_Fvy0awOEbh6nf7ggMM9w) where I describe some interesting aspects of this webpage!
+
+Thank you very much!

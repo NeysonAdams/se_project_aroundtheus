@@ -11,18 +11,16 @@
 
 .card__image {
   width: 100%;
-  height: 80%;
+  height: 282px;
   object-fit: cover;
 }
 
 .card__discription {
-  width: 100%;
+  width: 282px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 25px;
+  margin: 25px 0;
 }
 
 .card__title {
@@ -34,7 +32,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  margin: 0;
+  margin: 0 0 0 20px;
   padding: 0;
 }
 
@@ -45,6 +43,7 @@
   width: 21px;
   height: 18px;
   cursor: pointer;
+  margin-right: 25px;
 }
 
 .card__like-btn:hover {

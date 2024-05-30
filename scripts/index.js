@@ -22,5 +22,5 @@ let initialCards = [
   {
     name: "Lago di Braies",
     limk: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-  },
+  }
 ];

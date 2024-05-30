@@ -17,3 +17,9 @@
   padding: 0;
   justify-content: center;
 }
+
+@media screen and (max-width: 470px) {
+  .galery {
+    margin-top: 36px;
+  }
+}

@@ -14,5 +14,6 @@
 @media screen and (max-width: 470px) {
   .page__content {
     padding: 0;
+    margin: 0 auto;
   }
 }

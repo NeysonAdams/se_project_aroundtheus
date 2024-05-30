@@ -14,7 +14,11 @@
 }
 
 @media screen and (max-width: 470px) {
+  .footer {
+    max-width: 282px;
+  }
   .footer__copywriting {
     font-size: 14px;
+    padding-top: 0;
   }
 }

@@ -1,16 +1,20 @@
 .model {
   display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
   flex-direction: column;
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
 }
 
-.modal_opened {
+.model_opened {
   display: flex;
 }
 
 .model__container {
+  position: relative;
   max-width: 420px;
   justify-self: center;
   align-self: center;
@@ -40,6 +44,10 @@
   height: 40px;
   top: -40px;
   right: -40px;
+}
+
+.model__close-button:hover {
+  opacity: 0.6;
 }
 
 .model__form {
@@ -84,6 +92,10 @@
   border-radius: 2px;
 }
 
+.model__submit-button:hover {
+  opacity: 0.8;
+}
+
 @media screen and (max-width: 470px) {
   .model__container {
     max-width: 282px;
@@ -98,7 +110,6 @@
   .model__close-button {
     width: 26px;
     height: 26px;
-    top: -10px;
     right: 3px;
   }
 

@@ -24,3 +24,26 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
+
+const galleryContainer = document.querySelector(".galery__cards");
+
+function getCardElement(data) {
+  const template = document.getElementById("card-template").content;
+
+  const cardElement = template.cloneNode(true);
+
+  const cardImage = cardElement.querySelector(".card__image");
+  const cardTitle = cardElement.querySelector(".card__title");
+
+  cardImage.src = data.link;
+  cardImage.alt = data.name;
+
+  cardTitle.textContent = data.name;
+
+  return cardElement;
+}
+
+for (let data of initialCards) {
+  const cardElement = getCardElement(data);
+  galleryContainer.appendChild(cardElement);
+}

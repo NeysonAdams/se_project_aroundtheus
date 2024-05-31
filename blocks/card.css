@@ -18,6 +18,7 @@
 .card__discription {
   width: 282px;
   display: flex;
+  flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
   margin: 25px 0;

@@ -1,5 +1,5 @@
 .model {
-  display: flex; /* Чтобы элемент всегда занимал место, но был невидимым */
+  display: flex;
   opacity: 0;
   visibility: hidden;
   position: fixed;

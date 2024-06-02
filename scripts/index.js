@@ -26,20 +26,23 @@ const initialCards = [
 ];
 
 const galleryContainer = document.querySelector(".galery__cards");
-const modalPopup = document.querySelector("#popup");
+const modalPopup = document.querySelector("#popup_profile");
+const cardsPopup = document.querySelector("#popup_cards");
 const imageContainer = document.querySelector("#image");
 
 const editButton = document.querySelector(".profile__edit-button");
 const addButton = document.querySelector(".profile__add-button");
-const closePopupButton = modalPopup.querySelector(".model__close-button");
-const closeImageButton = imageContainer.querySelector(".model__close-button");
 
-const poupTitle = modalPopup.querySelector(".model__title");
+const closeButtons = document.querySelectorAll(".model__close-button");
+
 const modelFormElement = modalPopup.querySelector(".model__form");
-const titleInput = modelFormElement.querySelectorAll(".model__form-input")[0];
-const subtitleInput =
-  modelFormElement.querySelectorAll(".model__form-input")[1];
-const submitButton = modelFormElement.querySelector(".model__submit-button");
+const nameInput = modelFormElement.querySelectorAll(".model__form-input")[0];
+const jobInput = modelFormElement.querySelectorAll(".model__form-input")[1];
+
+const cardsFormElement = cardsPopup.querySelector(".model__form");
+const titleInput = cardsFormElement.querySelectorAll(".model__form-input")[0];
+const linkInput = cardsFormElement.querySelectorAll(".model__form-input")[1];
+
 const image = imageContainer.querySelector(".model__image");
 const imageLabel = imageContainer.querySelector(".model__image-label");
 
@@ -61,30 +64,26 @@ function getCardElement(name, link) {
 
   const trashButton = cardElement.querySelector(".card_trash-button");
   const likeButton = cardElement.querySelector(".card__like-btn");
-  const imageButton = cardElement.querySelector(".card__image");
 
   trashButton.addEventListener("click", handleRemoveCard);
   likeButton.addEventListener("click", handleLike);
-  imageButton.addEventListener("click", showImagePopup);
+  cardImage.addEventListener("click", () => {
+    image.src = link;
+    image.alt = name;
+
+    imageLabel.textContent = name;
+    openPopup(imageContainer);
+  });
 
   return cardElement;
 }
 
-function showModelPopup(event) {
-  const classList = event.target.classList;
-  const isAddNePopup = classList.contains("profile__add-button");
+function openPopup(popup) {
+  popup.classList.add("model_opened");
+}
 
-  poupTitle.textContent = isAddNePopup ? "New place" : "Edit profile";
-
-  titleInput.value = isAddNePopup ? "" : profileName.textContent;
-  subtitleInput.value = isAddNePopup ? "" : profileJob.textContent;
-
-  titleInput.placeholder = isAddNePopup ? "Title" : "";
-  subtitleInput.placeholder = isAddNePopup ? "Image link" : "";
-
-  submitButton.textContent = isAddNePopup ? "Create" : "Save";
-
-  modalPopup.classList.add("model_opened");
+function closePopup(popup) {
+  popup.classList.remove("model_opened");
 }
 
 function showImagePopup(event) {
@@ -106,14 +105,15 @@ function hideImagePopup() {
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
+  hideModelPopup();
+}
 
-  if (poupTitle.textContent == "Edit profile") {
-    profileName.textContent = titleInput.value;
-    profileJob.textContent = subtitleInput.value;
-  } else {
-    const cardElement = getCardElement(titleInput.value, subtitleInput.value);
-    galleryContainer.prepend(cardElement);
-  }
+function handleCardsFormSubmit(evt) {
+  evt.preventDefault();
+  const cardElement = getCardElement(nameInput.value, jobInput.value);
+  galleryContainer.prepend(cardElement);
   hideModelPopup();
 }
 
@@ -124,18 +124,23 @@ function handleRemoveCard(event) {
 
 function handleLike(event) {
   const currentClassList = event.target.classList;
-  if (currentClassList.contains("card__like-btn-active")) {
-    event.target.classList.remove("card__like-btn-active");
-  } else currentClassList.add("card__like-btn-active");
+  currentClassList.toggle("card__like-btn-active");
 }
 
-editButton.addEventListener("click", showModelPopup);
-closePopupButton.addEventListener("click", hideModelPopup);
-closeImageButton.addEventListener("click", hideImagePopup);
+editButton.addEventListener("click", () => {
+  openPopup(modalPopup);
+});
+addButton.addEventListener("click", () => {
+  openPopup(cardsPopup);
+});
 
-addButton.addEventListener("click", showModelPopup);
+closeButtons.forEach((button) => {
+  const popup = button.closest(".model");
+  button.addEventListener("click", () => closePopup(popup));
+});
 
 modelFormElement.addEventListener("submit", handleProfileFormSubmit);
+cardsFormElement.addEventListener("submit", handleCardsFormSubmit);
 
 initialCards.forEach((data) => {
   const cardElement = getCardElement(data.name, data.link);

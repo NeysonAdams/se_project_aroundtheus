@@ -81,14 +81,28 @@
       </div>
     </div>
 
-    <div class="model" id="popup">
+    <div class="model" id="popup_profile">
       <div class="model__container">
         <h2 class="model__title">Edit profile</h2>
         <button class="model__close-button" type="button"></button>
         <form class="model__form">
           <fieldset class="model__fieldset">
-            <input class="model__form-input" />
-            <input class="model__form-input" />
+            <input class="model__form-input" value="Jacques Cousteau" />
+            <input class="model__form-input" value="Explorer" />
+          </fieldset>
+          <button class="model__submit-button" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="model" id="popup_cards">
+      <div class="model__container">
+        <h2 class="model__title">New place</h2>
+        <button class="model__close-button" type="button"></button>
+        <form class="model__form">
+          <fieldset class="model__fieldset">
+            <input class="model__form-input" placeholder="Title" />
+            <input class="model__form-input" placeholder="Image link" />
           </fieldset>
           <button class="model__submit-button" type="submit">Save</button>
         </form>

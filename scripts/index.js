@@ -26,9 +26,9 @@ const initialCards = [
 ];
 
 const galleryContainer = document.querySelector(".galery__cards");
-const modalPopup = document.querySelector("#popup_profile");
-const cardsPopup = document.querySelector("#popup_cards");
-const imageContainer = document.querySelector("#image");
+const modalPopup = document.querySelector(".popup_profile");
+const cardsPopup = document.querySelector(".popup_cards");
+const imageContainer = document.querySelector(".popup_image");
 
 const editButton = document.querySelector(".profile__edit-button");
 const addButton = document.querySelector(".profile__add-button");

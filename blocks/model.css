@@ -1,5 +1,7 @@
 .model {
-  display: none;
+  display: flex; /* Чтобы элемент всегда занимал место, но был невидимым */
+  opacity: 0;
+  visibility: hidden;
   position: fixed;
   top: 0;
   left: 0;
@@ -7,10 +9,12 @@
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
+  transition: opacity 0.2s linear, visibility 0.2s linear;
 }
 
 .model_opened {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
 }
 
 .model__container {
@@ -23,6 +27,17 @@
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+}
+
+.model_container_image {
+  max-width: 75vw;
+  max-height: 75vh;
+  background-color: transparent;
+}
+
+.model__image {
+  width: 100%;
+  height: 100%;
 }
 
 .model__title {
@@ -39,6 +54,7 @@
   background-size: cover;
   background-position: center;
   background-color: transparent;
+  border: none;
   position: absolute;
   width: 40px;
   height: 40px;
@@ -48,6 +64,14 @@
 
 .model__close-button:hover {
   opacity: 0.6;
+}
+
+.model__image-label {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.2;
+  color: #fff;
 }
 
 .model__form {
@@ -111,6 +135,13 @@
     width: 26px;
     height: 26px;
     right: 3px;
+  }
+
+  .model__close-button_image {
+    width: 30px;
+    height: 33px;
+    right: -30px;
+    top: -30px;
   }
 
   .model__close-button-icon {

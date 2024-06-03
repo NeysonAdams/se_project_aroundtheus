@@ -95,26 +95,18 @@ function showImagePopup(event) {
   imageContainer.classList.add("model_opened");
 }
 
-function hideModelPopup() {
-  modalPopup.classList.remove("model_opened");
-}
-
-function hideImagePopup() {
-  imageContainer.classList.remove("model_opened");
-}
-
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  hideModelPopup();
+  closePopup(modalPopup);
 }
 
 function handleCardsFormSubmit(evt) {
   evt.preventDefault();
-  const cardElement = getCardElement(nameInput.value, jobInput.value);
+  const cardElement = getCardElement(titleInput.value, linkInput.value);
   galleryContainer.prepend(cardElement);
-  hideModelPopup();
+  closePopup(cardsPopup);
 }
 
 function handleRemoveCard(event) {

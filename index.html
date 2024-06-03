@@ -70,7 +70,7 @@
       </footer>
     </div>
 
-    <div class="model popup_image">
+    <div class="model" id="modal-image">
       <div class="model__container model_container_image">
         <img class="model__image" />
         <button
@@ -81,28 +81,40 @@
       </div>
     </div>
 
-    <div class="model popup_profile">
+    <div class="model" id="modal-profile">
       <div class="model__container">
         <h2 class="model__title">Edit profile</h2>
         <button class="model__close-button" type="button"></button>
         <form class="model__form">
           <fieldset class="model__fieldset">
-            <input class="model__form-input" value="Jacques Cousteau" />
-            <input class="model__form-input" value="Explorer" />
+            <input
+              class="model__form-input model__form-input_name"
+              value="Jacques Cousteau"
+            />
+            <input
+              class="model__form-input model__form-input_job"
+              value="Explorer"
+            />
           </fieldset>
           <button class="model__submit-button" type="submit">Save</button>
         </form>
       </div>
     </div>
 
-    <div class="model popup_cards">
+    <div class="model" id="modal-cards">
       <div class="model__container">
         <h2 class="model__title">New place</h2>
         <button class="model__close-button" type="button"></button>
         <form class="model__form">
           <fieldset class="model__fieldset">
-            <input class="model__form-input" placeholder="Title" />
-            <input class="model__form-input" placeholder="Image link" />
+            <input
+              class="model__form-input model__form-input_title"
+              placeholder="Title"
+            />
+            <input
+              class="model__form-input model__form-input_link"
+              placeholder="Image link"
+            />
           </fieldset>
           <button class="model__submit-button" type="submit">Save</button>
         </form>

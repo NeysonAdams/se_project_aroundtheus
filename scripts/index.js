@@ -26,25 +26,25 @@ const initialCards = [
 ];
 
 const galleryContainer = document.querySelector(".galery__cards");
-const modalPopup = document.querySelector(".popup_profile");
-const cardsPopup = document.querySelector(".popup_cards");
-const imageContainer = document.querySelector(".popup_image");
+const profileModal = document.querySelector("#modal-profile");
+const cardsModal = document.querySelector("#modal-cards");
+const imageModal = document.querySelector("#modal-image");
 
 const editButton = document.querySelector(".profile__edit-button");
 const addButton = document.querySelector(".profile__add-button");
 
 const closeButtons = document.querySelectorAll(".model__close-button");
 
-const modelFormElement = modalPopup.querySelector(".model__form");
-const nameInput = modelFormElement.querySelectorAll(".model__form-input")[0];
-const jobInput = modelFormElement.querySelectorAll(".model__form-input")[1];
+const profileFormElement = profileModal.querySelector(".model__form");
+const nameInput = profileFormElement.querySelector(".model__form-input_name");
+const jobInput = profileFormElement.querySelector(".model__form-input_job");
 
-const cardsFormElement = cardsPopup.querySelector(".model__form");
-const titleInput = cardsFormElement.querySelectorAll(".model__form-input")[0];
-const linkInput = cardsFormElement.querySelectorAll(".model__form-input")[1];
+const cardsFormElement = cardsModal.querySelector(".model__form");
+const titleInput = cardsFormElement.querySelector(".model__form-input_title");
+const linkInput = cardsFormElement.querySelector(".model__form-input_link");
 
-const image = imageContainer.querySelector(".model__image");
-const imageLabel = imageContainer.querySelector(".model__image-label");
+const image = imageModal.querySelector(".model__image");
+const imageLabel = imageModal.querySelector(".model__image-label");
 
 const profileName = document.querySelector(".profile__title");
 const profileJob = document.querySelector(".profile__subtitle");
@@ -72,7 +72,7 @@ function getCardElement(name, link) {
     image.alt = name;
 
     imageLabel.textContent = name;
-    openPopup(imageContainer);
+    openPopup(imageModal);
   });
 
   return cardElement;
@@ -86,27 +86,18 @@ function closePopup(popup) {
   popup.classList.remove("model_opened");
 }
 
-function showImagePopup(event) {
-  image.src = event.target.src;
-  image.alt = event.target.alt;
-
-  imageLabel.textContent = event.target.alt;
-
-  imageContainer.classList.add("model_opened");
-}
-
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  closePopup(modalPopup);
+  closePopup(profileModal);
 }
 
 function handleCardsFormSubmit(evt) {
   evt.preventDefault();
   const cardElement = getCardElement(titleInput.value, linkInput.value);
   galleryContainer.prepend(cardElement);
-  closePopup(cardsPopup);
+  closePopup(cardsModal);
 }
 
 function handleRemoveCard(event) {
@@ -120,10 +111,10 @@ function handleLike(event) {
 }
 
 editButton.addEventListener("click", () => {
-  openPopup(modalPopup);
+  openPopup(profileModal);
 });
 addButton.addEventListener("click", () => {
-  openPopup(cardsPopup);
+  openPopup(cardsModal);
 });
 
 closeButtons.forEach((button) => {
@@ -131,7 +122,7 @@ closeButtons.forEach((button) => {
   button.addEventListener("click", () => closePopup(popup));
 });
 
-modelFormElement.addEventListener("submit", handleProfileFormSubmit);
+profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 cardsFormElement.addEventListener("submit", handleCardsFormSubmit);
 
 initialCards.forEach((data) => {

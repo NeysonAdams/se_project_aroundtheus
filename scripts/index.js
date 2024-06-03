@@ -97,6 +97,8 @@ function handleCardsFormSubmit(evt) {
   evt.preventDefault();
   const cardElement = getCardElement(titleInput.value, linkInput.value);
   galleryContainer.prepend(cardElement);
+  titleInput.value = "";
+  linkInput.value = "";
   closePopup(cardsModal);
 }
 

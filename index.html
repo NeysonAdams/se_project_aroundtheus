@@ -85,16 +85,30 @@
       <div class="model__container">
         <h2 class="model__title">Edit profile</h2>
         <button class="model__close-button" type="button"></button>
-        <form class="model__form">
+        <form class="model__form" novalidate>
           <fieldset class="model__fieldset">
-            <input
-              class="model__form-input model__form-input_name"
-              value="Jacques Cousteau"
-            />
-            <input
-              class="model__form-input model__form-input_job"
-              value="Explorer"
-            />
+            <label class="model__form-label">
+              <input
+                name="name"
+                type="text"
+                class="model__form-input"
+                value="Jacques Cousteau"
+                required
+                minlength="2"
+              />
+              <span class="model__input-error name-input-error"></span>
+            </label>
+            <label class="model__form-label">
+              <input
+                name="job"
+                type="text"
+                class="model__form-input"
+                value="Explorer"
+                required
+                maxlength="2"
+              />
+              <span class="model__input-error job-input-error"></span>
+            </label>
           </fieldset>
           <button class="model__submit-button" type="submit">Save</button>
         </form>
@@ -105,16 +119,29 @@
       <div class="model__container">
         <h2 class="model__title">New place</h2>
         <button class="model__close-button" type="button"></button>
-        <form class="model__form">
+        <form class="model__form" novalidate>
           <fieldset class="model__fieldset">
-            <input
-              class="model__form-input model__form-input_title"
-              placeholder="Title"
-            />
-            <input
-              class="model__form-input model__form-input_link"
-              placeholder="Image link"
-            />
+            <label class="model__form-label">
+              <input
+                name="title"
+                type="text"
+                class="model__form-input"
+                placeholder="Title"
+                required
+                maxlength="30"
+              />
+              <span class="model__input-error title-input-error"></span>
+            </label>
+            <label class="model__form-label">
+              <input
+                name="link"
+                type="url"
+                class="model__form-input"
+                placeholder="Image link"
+                required
+              />
+              <span class="model__input-error link-input-error"></span>
+            </label>
           </fieldset>
           <button class="model__submit-button" type="submit">Save</button>
         </form>
@@ -122,5 +149,6 @@
     </div>
 
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>

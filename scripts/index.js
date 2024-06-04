@@ -36,12 +36,12 @@ const addButton = document.querySelector(".profile__add-button");
 const closeButtons = document.querySelectorAll(".model__close-button");
 
 const profileFormElement = profileModal.querySelector(".model__form");
-const nameInput = profileFormElement.querySelector(".model__form-input_name");
-const jobInput = profileFormElement.querySelector(".model__form-input_job");
+const nameInput = profileFormElement.name;
+const jobInput = profileFormElement.job;
 
 const cardsFormElement = cardsModal.querySelector(".model__form");
-const titleInput = cardsFormElement.querySelector(".model__form-input_title");
-const linkInput = cardsFormElement.querySelector(".model__form-input_link");
+const titleInput = cardsFormElement.title;
+const linkInput = cardsFormElement.link;
 
 const image = imageModal.querySelector(".model__image");
 const imageLabel = imageModal.querySelector(".model__image-label");
@@ -130,4 +130,21 @@ cardsFormElement.addEventListener("submit", handleCardsFormSubmit);
 initialCards.forEach((data) => {
   const cardElement = getCardElement(data.name, data.link);
   galleryContainer.appendChild(cardElement);
+});
+
+const modalsList = document.querySelectorAll(".model");
+
+modalsList.forEach((modal) => {
+  modal.addEventListener("mousedown", (evt) => {
+    if (evt.currentTarget === evt.target) closePopup(modal);
+  });
+});
+
+document.addEventListener("keydown", (evt) => {
+  if (evt.key == "Escape") {
+    console.log("escape predesed");
+    modalsList.forEach((modal) => {
+      if (modal.classList.contains("model_opened")) closePopup(modal);
+    });
+  }
 });

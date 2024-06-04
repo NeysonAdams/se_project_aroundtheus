@@ -80,10 +80,12 @@ function getCardElement(name, link) {
 
 function openPopup(popup) {
   popup.classList.add("model_opened");
+  document.addEventListener("keydown", handlerEscapeClose);
 }
 
 function closePopup(popup) {
   popup.classList.remove("model_opened");
+  document.removeEventListener("keydown", handlerEscapeClose);
 }
 
 function handleProfileFormSubmit(evt) {
@@ -140,11 +142,11 @@ modalsList.forEach((modal) => {
   });
 });
 
-document.addEventListener("keydown", (evt) => {
+const handlerEscapeClose = (evt) => {
   if (evt.key == "Escape") {
     console.log("escape predesed");
     modalsList.forEach((modal) => {
       if (modal.classList.contains("model_opened")) closePopup(modal);
     });
   }
-});
+};

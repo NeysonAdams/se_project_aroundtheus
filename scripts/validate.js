@@ -1,16 +1,16 @@
 const showInputError = (formElement, inputElement, errorMessage, options) => {
   const errorElement = formElement.querySelector(
-    `.${inputElement.name}-input-error`
+    `.${inputElement.name}${options.inputErrorClass}`
   );
   errorElement.textContent = errorMessage;
-  errorElement.classList.add("model__input-error-active");
+  errorElement.classList.add(options.errorClass);
 };
 
 const hideInputError = (formElement, inputElement, options) => {
   const errorElement = formElement.querySelector(
-    `.${inputElement.name}-input-error`
+    `.${inputElement.name}${options.inputErrorClass}`
   );
-  errorElement.classList.remove("model__input-error-active");
+  errorElement.classList.remove(options.errorClass);
   errorElement.textContent = "";
 };
 
@@ -71,6 +71,6 @@ enableValidation({
   inputSelector: ".model__form-input",
   submitButtonSelector: ".model__submit-button",
   inactiveButtonClass: "model__submit-button-inactive",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
+  inputErrorClass: "-input-error",
+  errorClass: "model__input-error-active",
 });

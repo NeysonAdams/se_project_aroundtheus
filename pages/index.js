@@ -101,12 +101,12 @@ function handleCardsFormSubmit(evt) {
   titleInput.value = "";
   linkInput.value = "";
   cardFormValidator.toggleButtonState();
-  cardFormValidator.hideInputError();
+  cardFormValidator.forceHideInputError();
   closePopup(cardsModal);
 }
 
 editButton.addEventListener("click", () => {
-  profileFormValidator.hideInputError();
+  profileFormValidator.forceHideInputError();
   openPopup(profileModal);
 });
 addButton.addEventListener("click", () => {

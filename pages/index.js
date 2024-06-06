@@ -1,3 +1,5 @@
+import { Card } from "../components/Card.js";
+import { FormValidator } from "../components/FormValidator.js";
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -25,6 +27,15 @@ const initialCards = [
   },
 ];
 
+const optionsValidation = {
+  formSelector: ".model__form",
+  inputSelector: ".model__form-input",
+  submitButtonSelector: ".model__submit-button",
+  inactiveButtonClass: "model__submit-button-inactive",
+  inputErrorClass: "-input-error",
+  errorClass: "model__input-error-active",
+};
+
 const galleryContainer = document.querySelector(".galery__cards");
 const profileModal = document.querySelector("#modal-profile");
 const cardsModal = document.querySelector("#modal-cards");
@@ -49,34 +60,14 @@ const imageLabel = imageModal.querySelector(".model__image-label");
 const profileName = document.querySelector(".profile__title");
 const profileJob = document.querySelector(".profile__subtitle");
 
-function getCardElement(name, link) {
-  const template = document.getElementById("card-template").content;
-
-  const cardElement = template.cloneNode(true);
-
-  const cardImage = cardElement.querySelector(".card__image");
-  const cardTitle = cardElement.querySelector(".card__title");
-
-  cardImage.src = link;
-  cardImage.alt = name;
-
-  cardTitle.textContent = name;
-
-  const trashButton = cardElement.querySelector(".card_trash-button");
-  const likeButton = cardElement.querySelector(".card__like-btn");
-
-  trashButton.addEventListener("click", handleRemoveCard);
-  likeButton.addEventListener("click", handleLike);
-  cardImage.addEventListener("click", () => {
-    image.src = link;
-    image.alt = name;
-
-    imageLabel.textContent = name;
-    openPopup(imageModal);
-  });
-
-  return cardElement;
-}
+const profileFormValidator = new FormValidator(
+  optionsValidation,
+  profileFormElement
+);
+const cardFormValidator = new FormValidator(
+  optionsValidation,
+  cardsFormElement
+);
 
 function openPopup(popup) {
   popup.classList.add("model_opened");
@@ -92,29 +83,30 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
+  profileFormValidator.toggleButtonState(true);
   closePopup(profileModal);
 }
 
 function handleCardsFormSubmit(evt) {
   evt.preventDefault();
-  const cardElement = getCardElement(titleInput.value, linkInput.value);
-  galleryContainer.prepend(cardElement);
+  const card = new Card(
+    {
+      name: titleInput.value,
+      link: linkInput.value,
+    },
+    "card-template",
+    handleImageClick
+  );
+  galleryContainer.prepend(card.getCardElement());
   titleInput.value = "";
   linkInput.value = "";
+  cardFormValidator.toggleButtonState();
+  cardFormValidator.hideInputError();
   closePopup(cardsModal);
 }
 
-function handleRemoveCard(event) {
-  const card = event.target.closest(".card");
-  card.remove();
-}
-
-function handleLike(event) {
-  const currentClassList = event.target.classList;
-  currentClassList.toggle("card__like-btn-active");
-}
-
 editButton.addEventListener("click", () => {
+  profileFormValidator.hideInputError();
   openPopup(profileModal);
 });
 addButton.addEventListener("click", () => {
@@ -129,10 +121,21 @@ closeButtons.forEach((button) => {
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 cardsFormElement.addEventListener("submit", handleCardsFormSubmit);
 
+const handleImageClick = (name, link) => {
+  image.src = link;
+  image.alt = name;
+
+  imageLabel.textContent = name;
+  openPopup(imageModal);
+};
+
 initialCards.forEach((data) => {
-  const cardElement = getCardElement(data.name, data.link);
-  galleryContainer.appendChild(cardElement);
+  const card = new Card(data, "card-template", handleImageClick);
+  galleryContainer.appendChild(card.getCardElement());
 });
+
+profileFormValidator.enableValidation();
+cardFormValidator.enableValidation();
 
 const modalsList = document.querySelectorAll(".model");
 

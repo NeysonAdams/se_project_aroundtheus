@@ -89,19 +89,13 @@ function handleProfileFormSubmit(evt) {
 
 function handleCardsFormSubmit(evt) {
   evt.preventDefault();
-  const card = new Card(
-    {
-      name: titleInput.value,
-      link: linkInput.value,
-    },
-    "card-template",
-    handleImageClick
-  );
+  createCard({
+    name: titleInput.value,
+    link: linkInput.value,
+  });
   galleryContainer.prepend(card.getCardElement());
-  titleInput.value = "";
-  linkInput.value = "";
+  evt.target.reset();
   cardFormValidator.toggleButtonState();
-  cardFormValidator.forceHideInputError();
   closePopup(cardsModal);
 }
 
@@ -129,9 +123,13 @@ const handleImageClick = (name, link) => {
   openPopup(imageModal);
 };
 
-initialCards.forEach((data) => {
+const createCard = (data) => {
   const card = new Card(data, "card-template", handleImageClick);
   galleryContainer.appendChild(card.getCardElement());
+};
+
+initialCards.forEach((data) => {
+  createCard(data);
 });
 
 profileFormValidator.enableValidation();

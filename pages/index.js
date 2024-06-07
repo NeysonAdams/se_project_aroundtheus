@@ -89,11 +89,9 @@ function handleProfileFormSubmit(evt) {
 
 function handleCardsFormSubmit(evt) {
   evt.preventDefault();
-  createCard({
-    name: titleInput.value,
-    link: linkInput.value,
-  });
-  galleryContainer.prepend(card.getCardElement());
+  galleryContainer.prepend(
+    createCard({ name: titleInput.value, link: linkInput.value })
+  );
   evt.target.reset();
   cardFormValidator.toggleButtonState();
   closePopup(cardsModal);
@@ -123,13 +121,11 @@ const handleImageClick = (name, link) => {
   openPopup(imageModal);
 };
 
-const createCard = (data) => {
-  const card = new Card(data, "card-template", handleImageClick);
-  galleryContainer.appendChild(card.getCardElement());
-};
+const createCard = (data) =>
+  new Card(data, "card-template", handleImageClick).getCardElement();
 
 initialCards.forEach((data) => {
-  createCard(data);
+  galleryContainer.appendChild(createCard(data));
 });
 
 profileFormValidator.enableValidation();

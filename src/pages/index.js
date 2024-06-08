@@ -39,7 +39,7 @@ addButton.addEventListener("click", () => {
 });
 
 const handleImageClick = (name, link) => {
-  imageModal.open({ nmae: name, link: link });
+  imageModal.open({ name: name, link: link });
 };
 
 const createCard = (data) =>
@@ -47,4 +47,5 @@ const createCard = (data) =>
 
 profileModal.setEveentListeners();
 cardsModal.setEveentListeners();
+imageModal.setEveentListeners();
 gallerySection.renderItems();

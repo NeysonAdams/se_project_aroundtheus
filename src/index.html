@@ -10,13 +10,16 @@
 
     <title>Around The U.S</title>
 
-    <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="stylesheet" href="./pages/index.css" />
+    <link rel="shortcut icon" href="<%=require('./favicon.ico')%>" />
   </head>
   <body class="page">
     <div class="page__content">
       <header class="header">
-        <img class="header__logo" alt="logo" src="./images/logo.svg" />
+        <img
+          class="header__logo"
+          alt="logo"
+          src="<%=require('./images/logo.svg')%>"
+        />
       </header>
       <main class="content">
         <section class="profile">
@@ -25,7 +28,7 @@
               <img
                 class="profile__image"
                 alt="avatar"
-                src="./images/profile_photo.jpg"
+                src="<%=require('./images/profile_photo.jpg')%>"
               />
             </div>
             <div class="profile__info">
@@ -34,7 +37,7 @@
                 <button class="profile__edit-button" type="button">
                   <img
                     class="profile__edit-button-icon"
-                    src="./images/edit_btn.svg"
+                    src="<%=require('./images/edit_btn.svg')%>"
                     alt="Button Image"
                   />
                 </button>
@@ -46,7 +49,7 @@
             <img
               class="profile__add-button-icon"
               alt="+"
-              src="./images/add_btn_icon.svg"
+              src="<%=require('./images/add_btn_icon.svg')%>"
             />
           </button>
         </section>
@@ -147,7 +150,5 @@
         </form>
       </div>
     </div>
-
-    <script type="module" src="./pages/index.js"></script>
   </body>
 </html>

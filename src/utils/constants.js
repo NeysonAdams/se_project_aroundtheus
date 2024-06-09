@@ -1,5 +1,3 @@
-import UserInfo from "../components/UserInfo.js";
-
 export const initialCards = [
   {
     name: "Yosemite Valley",
@@ -38,7 +36,4 @@ export const optionsValidation = {
 
 export const editButton = document.querySelector(".profile__edit-button");
 export const addButton = document.querySelector(".profile__add-button");
-export const userInfo = new UserInfo({
-  nameSelector: ".profile__title",
-  jobSelector: ".profile__subtitle",
-});
+export const modalsForms = document.querySelectorAll(".model__form");

@@ -3,14 +3,28 @@ import {
   initialCards,
   editButton,
   addButton,
-  userInfo,
+  optionsValidation,
+  modalsForms,
 } from "../utils/constants.js";
 import Section from "../components/Section";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import "../pages/index.css";
+import UserInfo from "../components/UserInfo.js";
 
-export const gallerySection = new Section(
+import { FormValidator } from "../components/FormValidator.js";
+
+const formvalidatorList = {};
+
+modalsForms.forEach((form) => {
+  console.log(form.id);
+  formvalidatorList[form.id] = new FormValidator(optionsValidation, form);
+  formvalidatorList[form.id].enableValidation();
+});
+
+console.log(formvalidatorList);
+
+const gallerySection = new Section(
   {
     items: initialCards,
     renderer: (data) => {
@@ -20,18 +34,32 @@ export const gallerySection = new Section(
   ".galery__cards"
 );
 
-const profileModal = new PopupWithForm("#modal-profile", (form) => {
-  userInfo.setUserInfo(form.name.value, form.job.value);
+const userInfo = new UserInfo({
+  nameSelector: ".profile__title",
+  jobSelector: ".profile__subtitle",
 });
-const cardsModal = new PopupWithForm("#modal-cards", (form) => {
-  gallerySection.addItem(
-    createCard({ name: form.title.value, link: form.link.value }),
-    true
-  );
-});
+
+const profileModal = new PopupWithForm(
+  "#modal-profile",
+  (formData) => {
+    userInfo.setUserInfo(formData.name, formData.job);
+  },
+  formvalidatorList["profile"]
+);
+const cardsModal = new PopupWithForm(
+  "#modal-cards",
+  (form) => {
+    gallerySection.addItem(
+      createCard({ name: formData.title, link: formData.link }),
+      true
+    );
+  },
+  formvalidatorList["cards"]
+);
 const imageModal = new PopupWithImage("#modal-image");
 
 editButton.addEventListener("click", () => {
+  profileModal.setInputValues(userInfo.getUserInfo());
   profileModal.open();
 });
 addButton.addEventListener("click", () => {

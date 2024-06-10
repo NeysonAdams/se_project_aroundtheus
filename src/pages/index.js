@@ -48,7 +48,7 @@ const profileModal = new PopupWithForm(
 );
 const cardsModal = new PopupWithForm(
   "#modal-cards",
-  (form) => {
+  (formData) => {
     gallerySection.addItem(
       createCard({ name: formData.title, link: formData.link }),
       true

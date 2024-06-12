@@ -33,6 +33,7 @@ export class FormValidator {
     const errorElement = this._formElement.querySelector(
       `.${inputElement.name}${this._options.inputErrorClass}`
     );
+    console.log(`.${inputElement.name}${this._options.inputErrorClass}`);
     errorElement.classList.remove(this._options.errorClass);
     errorElement.textContent = "";
   }

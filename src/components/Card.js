@@ -1,9 +1,13 @@
 export class Card {
-  constructor(data, cardSelector, handleImageClick) {
+  constructor(data, cardSelector, handleImageClick, handleRemoveCard, api) {
+    this._id = data._id;
     this._name = data.name;
     this._link = data.link;
+    this._isLiked = data.isLiked;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
+    this._handleRemoveCard = handleRemoveCard;
+    this._api = api;
     this._getViews();
   }
 
@@ -12,11 +16,19 @@ export class Card {
       .getElementById(this._cardSelector)
       .content.cloneNode(true);
 
+    this._likeButton = this._cardElement.querySelector(".card__like-btn");
     this._cardImage = this._cardElement.querySelector(".card__image");
     this._cardTitle = this._cardElement.querySelector(".card__title");
 
     this._trashButton = this._cardElement.querySelector(".card_trash-button");
     this._likeButton = this._cardElement.querySelector(".card__like-btn");
+
+    if (this._isLiked) this._toggleLike();
+  }
+
+  _toggleLike() {
+    const currentClassList = this._likeButton.classList;
+    currentClassList.toggle("card__like-btn-active");
   }
 
   getCardElement() {
@@ -30,20 +42,25 @@ export class Card {
   }
 
   _setEventListeners() {
-    this._trashButton.addEventListener("click", this._handleRemoveCard);
-    this._likeButton.addEventListener("click", this._handleLike);
+    this._trashButton.addEventListener("click", (event) => {
+      const card = event.target.closest(".card");
+      this._handleRemoveCard(card, this._id);
+    });
+
+    this._likeButton.addEventListener("click", () => {
+      this._api
+        .like(this._isLiked, this._id)
+        .then((res) => {
+          this._isLiked = !this._isLiked;
+          this._toggleLike();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+
     this._cardImage.addEventListener("click", () => {
       this._handleImageClick(this._name, this._link);
     });
-  }
-
-  _handleRemoveCard(event) {
-    const card = event.target.closest(".card");
-    card.remove();
-  }
-
-  _handleLike(event) {
-    const currentClassList = event.target.classList;
-    currentClassList.toggle("card__like-btn-active");
   }
 }

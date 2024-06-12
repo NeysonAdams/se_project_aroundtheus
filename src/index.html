@@ -27,6 +27,13 @@
                 alt="avatar"
                 src="<%=require('./images/profile_photo.jpg')%>"
               />
+              <div class="profile__avatar-edit-button">
+                <img
+                  class="profile__avatar-edit-image"
+                  src="<%=require('./images/edit_icon.svg')%>"
+                  alt="edit"
+                />
+              </div>
             </div>
             <div class="profile__info">
               <div class="profile__edit">
@@ -135,6 +142,38 @@
             <label class="model__form-label">
               <input
                 name="link"
+                type="url"
+                class="model__form-input"
+                placeholder="Image link"
+                required
+              />
+              <span class="model__input-error link-input-error"></span>
+            </label>
+          </fieldset>
+          <button class="model__submit-button" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="model" id="modal-sure">
+      <div class="model__container">
+        <h2 class="model__title">Are you sure?</h2>
+        <button class="model__close-button" type="button"></button>
+        <div class="model__none_form">
+          <button class="model__submit-button" type="submit">Yes</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="model" id="modal-edit-avatar">
+      <div class="model__container">
+        <h2 class="model__title">Change profile picture</h2>
+        <button class="model__close-button" type="button"></button>
+        <form class="model__form" id="avatar" novalidate>
+          <fieldset class="model__fieldset">
+            <label class="model__form-label">
+              <input
+                name="avatar"
                 type="url"
                 class="model__form-input"
                 placeholder="Image link"

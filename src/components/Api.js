@@ -29,8 +29,7 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify(body),
     })
-      .then(_checkSuccessResponce)
-      .then(() => {})
+      .then(this._checkSuccessResponce)
       .catch((err) => {
         console.log(err);
       });

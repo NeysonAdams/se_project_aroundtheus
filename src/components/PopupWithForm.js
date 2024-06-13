@@ -10,10 +10,6 @@ export default class PopupWithForm extends Popup {
     this._submitButton = this._popupForm.querySelector(".model__submit-button");
   }
 
-  close() {
-    super.close();
-  }
-
   _getInputValues() {
     const formValues = {};
     this._inputList.forEach((input) => {
@@ -32,15 +28,19 @@ export default class PopupWithForm extends Popup {
     super.setEveentListeners();
     this._popupForm.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this._submitButton.textContent = "Save...";
+      this.renderLoading(true);
       this._handleFormSubmit(this._getInputValues());
     });
   }
 
-  submissionCompleate() {
-    this._submitButton.textContent = "Save";
+  resetFormAndClose() {
     this._popupForm.reset();
     this._validator.toggleButtonState();
     this.close();
+  }
+
+  renderLoading(isLoading) {
+    if (isLoading) this._submitButton.textContent = "Save...";
+    else this._submitButton.textContent = "Save";
   }
 }

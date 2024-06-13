@@ -16,17 +16,24 @@ export default class Api {
     });
   }
 
+  _checkSuccessResponce(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Error: ${res.status}`);
+  }
+
   _requestWithBody(endPoint, body, method = "POST") {
     return fetch(this._baseUrl + endPoint, {
       method: method,
       headers: this._headers,
       body: JSON.stringify(body),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    })
+      .then(_checkSuccessResponce)
+      .then(() => {})
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   getUserData() {

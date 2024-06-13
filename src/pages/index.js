@@ -11,7 +11,7 @@ import {
 import Section from "../components/Section";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
-import PopupSimple from "../components/PopupSimple.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import "../pages/index.css";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
@@ -48,12 +48,10 @@ const profileModal = new PopupWithForm(
       .editProfile({ name: formData.name, about: formData.job })
       .then((responce) => {
         userInfo.setUserInfo(responce.name, responce.about);
-      })
-      .catch((err) => {
-        console.log(err);
+        profileModal.resetFormAndClose();
       })
       .finally(() => {
-        profileModal.submissionCompleate();
+        profileModal.renderLoading(false);
       });
   },
   formvalidatorList["profile"]
@@ -66,12 +64,10 @@ const cardsModal = new PopupWithForm(
       .addCard({ name: formData.title, link: formData.link })
       .then((response) => {
         gallerySection.addItem(createCard(response), true);
-      })
-      .catch((err) => {
-        console.log(err);
+        cardsModal.resetFormAndClose();
       })
       .finally(() => {
-        cardsModal.submissionCompleate();
+        cardsModal.renderLoading(false);
       });
   },
   formvalidatorList["cards"]
@@ -84,26 +80,21 @@ const avarEditModal = new PopupWithForm(
       .editAvatar({ avatar: formData.avatar })
       .then((responce) => {
         userInfo.setAvatarLink(responce.avatar);
-      })
-      .catch((err) => {
-        console.log(err);
+        avarEditModal.resetFormAndClose();
       })
       .finally(() => {
-        avarEditModal.submissionCompleate();
+        avarEditModal.renderLoading();
       });
   },
   formvalidatorList["avatar"]
 );
 
 const imageModal = new PopupWithImage("#modal-image");
-const preDeletepoup = new PopupSimple("#modal-sure", (card, id) => {
+const preDeletepoup = new PopupWithConfirmation("#modal-sure", (card, id) => {
   api
     .removeCard(id)
     .then((res) => {
       card.remove();
-    })
-    .catch((err) => {
-      console.log(err);
     })
     .finally(() => {
       preDeletepoup.close();

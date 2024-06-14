@@ -19,7 +19,6 @@ export default class PopupWithConfirmation extends Popup {
     this._button.addEventListener("click", (evt) => {
       evt.preventDefault();
       this._handleFormSubmit(this._card, this._id);
-      this.close();
     });
   }
 }

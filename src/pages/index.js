@@ -104,6 +104,7 @@ const preDeletepoup = new PopupWithConfirmation("#modal-sure", (card, id) => {
     .removeCard(id)
     .then((res) => {
       card.remove();
+      preDeletepoup.close();
     })
     .catch((err) => {
       console.log(err);

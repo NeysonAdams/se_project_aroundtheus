@@ -50,6 +50,9 @@ const profileModal = new PopupWithForm(
         userInfo.setUserInfo(responce.name, responce.about);
         profileModal.resetFormAndClose();
       })
+      .catch((err) => {
+        console.log(err);
+      })
       .finally(() => {
         profileModal.renderLoading(false);
       });
@@ -65,6 +68,9 @@ const cardsModal = new PopupWithForm(
       .then((response) => {
         gallerySection.addItem(createCard(response), true);
         cardsModal.resetFormAndClose();
+      })
+      .catch((err) => {
+        console.log(err);
       })
       .finally(() => {
         cardsModal.renderLoading(false);
@@ -82,6 +88,9 @@ const avarEditModal = new PopupWithForm(
         userInfo.setAvatarLink(responce.avatar);
         avarEditModal.resetFormAndClose();
       })
+      .catch((err) => {
+        console.log(err);
+      })
       .finally(() => {
         avarEditModal.renderLoading();
       });
@@ -95,6 +104,9 @@ const preDeletepoup = new PopupWithConfirmation("#modal-sure", (card, id) => {
     .removeCard(id)
     .then((res) => {
       card.remove();
+    })
+    .catch((err) => {
+      console.log(err);
     })
     .finally(() => {
       preDeletepoup.close();

@@ -8,11 +8,7 @@ export default class Api {
     return fetch(this._baseUrl + endPoint, {
       method: method,
       headers: this._headers,
-    })
-      .then(this._checkSuccessResponce)
-      .catch((err) => {
-        console.log(err);
-      });
+    }).then(this._checkSuccessResponce);
   }
 
   _checkSuccessResponce(res) {

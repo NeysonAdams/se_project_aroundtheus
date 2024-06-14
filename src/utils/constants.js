@@ -1,3 +1,11 @@
+export const apiOptions = {
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "a1435ffd-8061-442b-b2ae-d3458326825a",
+    "Content-Type": "application/json",
+  },
+};
+
 export const initialCards = [
   {
     name: "Yosemite Valley",
@@ -37,3 +45,4 @@ export const optionsValidation = {
 export const editButton = document.querySelector(".profile__edit-button");
 export const addButton = document.querySelector(".profile__add-button");
 export const modalsForms = document.querySelectorAll(".model__form");
+export const editAvatarButton = document.querySelector(".profile__avatar");

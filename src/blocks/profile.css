@@ -20,6 +20,31 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+.profile__avatar-edit-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%; /* Круглая маска для кнопки */
+  visibility: hidden; /* Изначально скрыта */
+}
+
+.profile__avatar-edit-image {
+  border: none;
+  width: 26px;
+  height: 26px;
+}
+
+.profile__avatar:hover .profile__avatar-edit-button {
+  visibility: visible;
 }
 
 .profile__image {

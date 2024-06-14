@@ -79,6 +79,11 @@
   margin: 50px 36px 27px 36px;
 }
 
+.model__none_form {
+  max-width: 358px;
+  margin: 0px 36px 27px 36px;
+}
+
 .model__fieldset {
   margin: 0;
   padding: 0;

@@ -23,11 +23,7 @@ export default class Api {
       method: method,
       headers: this._headers,
       body: JSON.stringify(body),
-    })
-      .then(this._checkSuccessResponce)
-      .catch((err) => {
-        console.log(err);
-      });
+    }).then(this._checkSuccessResponce);
   }
 
   getUserData() {
